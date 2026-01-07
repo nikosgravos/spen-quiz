@@ -34,12 +34,14 @@ function renderQuiz() {
   quiz.innerHTML = "";
 
   questions.forEach((q, index) => {
-    const card = document.createElement("div");
-    card.className = "card";
+    // Wrapper για κάθε ερώτηση
+    const questionDiv = document.createElement("div");
+    questionDiv.className = "question";
+    questionDiv.id = `question-${q.id}`;
 
     let html = `<h3>${index + 1}. ${q.question}</h3>`;
 
-    // Image (rank insignia etc.)
+    // Προσθήκη εικόνας αν υπάρχει
     if (q.image) {
       html += `
         <img 
@@ -53,12 +55,10 @@ function renderQuiz() {
     if (q.type === "true_false") {
       html += `
         <label>
-          <input type="radio" name="q${index}" value="true">
-          Σωστό
+          <input type="radio" name="q${q.id}" value="true"> Σωστό
         </label>
         <label>
-          <input type="radio" name="q${index}" value="false">
-          Λάθος
+          <input type="radio" name="q${q.id}" value="false"> Λάθος
         </label>
       `;
     }
@@ -68,15 +68,15 @@ function renderQuiz() {
       q.options.forEach(option => {
         html += `
           <label>
-            <input type="radio" name="q${index}" value="${option}">
+            <input type="radio" name="q${q.id}" value="${option}">
             ${option}
           </label>
         `;
       });
     }
 
-    card.innerHTML = html;
-    quiz.appendChild(card);
+    questionDiv.innerHTML = html;
+    quiz.appendChild(questionDiv);
   });
 }
 
@@ -86,26 +86,52 @@ function renderQuiz() {
 function submitQuiz() {
   let score = 0;
 
-  questions.forEach((q, index) => {
-    const selected = document.querySelector(
-      `input[name="q${index}"]:checked`
-    );
+  questions.forEach(q => {
+    const questionEl = document.getElementById(`question-${q.id}`);
+    const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
 
-    if (!selected) return;
+    let feedback = document.createElement("div");
+    feedback.classList.add("answer-feedback");
 
-    // true / false
-    if (q.type === "true_false") {
-      if (String(q.answer) === selected.value) {
-        score++;
-      }
-    }
-    // multiple choice
-    else {
-      if (selected.value === q.answer) {
-        score++;
-      }
-    }
+    if (selected && selected.value === q.answer) {
+    score++;
+    questionEl.classList.add("correct");
+    feedback.classList.add("correct");
+    feedback.innerHTML = "✔ Σωστή απάντηση";
+} else {
+    questionEl.classList.add("wrong");
+    feedback.classList.add("wrong");
+
+    const userAnswer = selected ? selected.value : "Καμία απάντηση";
+    feedback.innerHTML = `
+        ✖ Λάθος απάντηση<br>
+        <strong>Δική σου:</strong> ${userAnswer}
+        <div class="correct-answer">
+          <strong>Σωστή:</strong> ${q.answer}
+        </div>
+    `;
+}
+
+    questionEl.appendChild(feedback);
   });
 
-  alert(`Σκορ: ${score} / ${questions.length}`);
+  showScoreModal(score, questions.length);
+}
+
+
+function showScoreModal(score, total) {
+  const modal = document.createElement("div");
+  modal.className = "score-modal";
+
+  modal.innerHTML = `
+    <div class="score-box">
+      <h2>Αποτέλεσμα</h2>
+      <p>${score} / ${total} σωστές απαντήσεις</p>
+      <button onclick="this.closest('.score-modal').remove()">
+        Κλείσιμο
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
 }
