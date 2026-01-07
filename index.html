@@ -2,19 +2,38 @@
 <html lang="el">
 <head>
   <meta charset="UTF-8">
-  <title>Στρατιωτικό Quiz Εκπαίδευσης</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ΣΠΕΝ – Quiz Εκπαίδευσης</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="landing">
 
-<header>
-  <h1>Στρατιωτικό Quiz Εκπαίδευσης</h1>
-  <p>Προετοιμασία για τελικές εξετάσεις ΚΕΝ</p>
+<header class="landing-header">
+  <img src="images/Artillery_(Hellenic_Army_emblem).png" alt="Πυροβολικό ΕΣ" class="army-logo">
+  <h1>ΣΠΕΝ ΠΥΡΟΒΟΛΙΚΟΥ</h1>
+  <p class="subtitle">Ψηφιακό Quiz Εκπαίδευσης</p>
 </header>
 
-<main>
-  <a href="quiz.html" class="btn">Έναρξη Quiz</a>
+<main class="landing-content">
+  <div class="info-card">
+    <h2>Οδηγίες</h2>
+    <ul>
+      <li>Το quiz αποτελείται από ερωτήσεις πολλαπλής επιλογής</li>
+      <li>Υπάρχουν ερωτήσεις με εικόνες και αντιστοίχιση</li>
+      <li>Απάντησε με προσοχή πριν την υποβολή</li>
+    </ul>
+  </div>
+
+  <button class="start-button" onclick="startQuiz()">
+    Έναρξη Quiz
+  </button>
 </main>
+
+<script>
+  function startQuiz() {
+    window.location.href = "quiz.html";
+  }
+</script>
 
 </body>
 </html>
