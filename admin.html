@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Διαχείριση Ερωτήσεων</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>Διαχείριση</h1>
+</header>
+
+<main class="card">
+  <select id="type">
+    <option value="true_false">Σωστό / Λάθος</option>
+    <option value="multiple_choice">Πολλαπλής</option>
+    <option value="image_choice">Εικόνα</option>
+    <option value="matching">Αντιστοίχιση</option>
+  </select>
+
+  <textarea id="question" placeholder="Ερώτηση"></textarea>
+  <textarea id="options" placeholder="Επιλογές ή ζεύγη"></textarea>
+  <input id="image" placeholder="Image path (προαιρετικό)">
+  <input id="answer" placeholder="Απάντηση">
+
+  <button onclick="add()">Προσθήκη</button>
+  <button class="danger" onclick="exportJSON()">Εξαγωγή JSON</button>
+
+  <div id="list"></div>
+</main>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

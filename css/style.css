@@ -1,27 +1,197 @@
-body {
+/* =====================
+   ROOT THEME VARIABLES
+===================== */
+:root {
+  --army-black: #0b0d0e;
+  --army-green: #2f3d2e;
+  --army-dark-green: #1f291e;
+  --army-yellow: #f4c430;
+  --army-gray: #cfd3d1;
+  --radius: 14px;
+  --radius-small: 10px;
+  --shadow-soft: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* =====================
+   RESET & BASE
+===================== */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #2f3e2e;
-  color: #d6d1b1;
-  text-align: center;
+  padding: 0;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(180deg, var(--army-black), var(--army-dark-green));
+  color: var(--army-gray);
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+/* =====================
+   HEADER
+===================== */
 header {
-  padding: 40px 20px;
-  border-bottom: 2px solid #3a4a3f;
+  text-align: center;
+  padding: 24px 16px 20px;
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 40px;
-  padding: 15px 30px;
-  background-color: #3a4a3f;
-  color: #d6d1b1;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid #000;
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--army-yellow);
+  margin-top: 12px;
 }
 
-.btn:hover {
-  background-color: #1f2a1f;
+.army-logo {
+  width: 88px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+}
+
+/* =====================
+   QUIZ CONTAINER
+===================== */
+main#quiz {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =====================
+   QUESTION CARD
+===================== */
+.question {
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(244,196,48,0.15);
+}
+
+.question h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+/* =====================
+   IMAGE QUESTIONS
+===================== */
+.question img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: var(--radius-small);
+  margin: 12px auto;
+  display: block;
+  border: 2px solid rgba(244,196,48,0.3);
+}
+
+/* =====================
+   ANSWER OPTIONS
+===================== */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-small);
+  background: var(--army-green);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+label:hover {
+  background: #3a4b38;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--army-yellow);
+  transform: scale(1.2);
+}
+
+/* =====================
+   MATCHING / SELECT
+===================== */
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-small);
+  border: none;
+  background: #ffffff;
+  font-size: 0.95rem;
+}
+
+/* =====================
+   FOOTER SUBMIT
+===================== */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(11,13,14,0), var(--army-black));
+  padding: 16px;
+}
+
+footer button {
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--radius);
+  border: none;
+  background: linear-gradient(135deg, var(--army-yellow), #ffd95a);
+  color: #000000;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(244,196,48,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+footer button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(244,196,48,0.45);
+}
+
+footer button:active {
+  transform: scale(0.98);
+}
+
+/* =====================
+   RESULTS / FEEDBACK
+===================== */
+.result {
+  text-align: center;
+  padding: 24px;
+  font-size: 1.2rem;
+  color: var(--army-yellow);
+}
+
+/* =====================
+   MOBILE REFINEMENTS
+===================== */
+@media (max-width: 400px) {
+  header h1 {
+    font-size: 1.35rem;
+  }
+
+  .army-logo {
+    width: 76px;
+  }
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "type": "true_false",
+    "question": "Η ασφάλεια του όπλου τοποθετείται πριν τον καθαρισμό.",
+    "answer": true
+  },
+  {
+    "id": 2,
+    "type": "multiple_choice",
+    "question": "Ποιο είναι το διαμέτρημα του G3;",
+    "options": ["5.56mm", "7.62mm", "9mm"],
+    "answer": "7.62mm"
+  },
+  {
+    "id": 3,
+    "type": "image_choice",
+    "question": "Τι βαθμό δείχνει η παρακάτω εικόνα;",
+    "image": "assets/ranks/lochias.png",
+    "options": ["Λοχίας", "Υπολοχαγός", "Δεκανέας"],
+    "answer": "Λοχίας"
+  },
+  {
+    "id": 4,
+    "type": "matching",
+    "question": "Αντιστοίχισε τον βαθμό με την κατηγορία",
+    "pairs": [
+      { "left": "Δεκανέας", "right": "Υπαξιωματικός" },
+      { "left": "Λοχαγός", "right": "Αξιωματικός" }
+    ]
+  }
+]
