@@ -1,8 +1,6 @@
-# 🎯 SPEN Training Quiz
+# 🎯 Advanced Training Quiz
 
-A lightweight **web-based quiz app** designed to help users practice and review **basic military training (SPEN)** concepts through interactive quizzes.
-
----
+A lightweight **web-based quiz app** designed to help soldiers practice and review **advanced military training** concepts through interactive quizzes. Developed during my service at the Artillery Training Center, Thebes.
 
 ## 🚀 What It Does
 
@@ -11,8 +9,6 @@ A lightweight **web-based quiz app** designed to help users practice and review 
 - 📊 Instant scoring and results  
 - 🔁 Restart quiz anytime  
 - 📱 Mobile-friendly, clean UI  
-
----
 
 ## 🛠 Tech Stack
 
@@ -23,15 +19,9 @@ A lightweight **web-based quiz app** designed to help users practice and review 
 
 No frameworks. No backend. Just open and run.
 
----
-
 ## ▶️ How to Run
 
-1. Clone the repo  
-2. Open `index.html` in your browser  
-3. Click **New Quiz** and start 🎉  
-
----
+Visit: https://nikosgravos.github.io/spen-quiz/
 
 ## 🎓 Purpose
 
@@ -41,13 +31,7 @@ Built as an **educational & portfolio project** showcasing:
 - Data-driven UI (JSON-based)
 - Exam-style quiz flow
 
----
-
 ## ⚠️ Disclaimer
 
 Educational use only.  
 Not affiliated with any official military organization.
-
----
-
-✨ Simple. Focused. Functional.
