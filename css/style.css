@@ -27,6 +27,7 @@ body {
   color: var(--army-gray);
   min-height: 100vh;
   padding-bottom: 100px;
+  
 }
 
 /* =====================
@@ -304,20 +305,22 @@ body.landing {
    SITE FOOTER (WRAP SAFE)
 ===================== */
 .site-footer {
-  position: fixed;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 92%;
+  position: static;
+  margin: 40px auto 40px;
+
   padding: 6px 10px;
   text-align: center;
   font-size: 0.7rem;
   line-height: 1.35;
-  color: rgba(207, 211, 209, 0.6);
+
+  color: rgba(207, 211, 209, 0.55);
   background: transparent;
-  z-index: 10;
-  word-break: break-word;
+
+  max-width: 92%;
 }
+
+
+
 
 .site-footer sup {
   font-size: 0.55em;

@@ -1,4 +1,5 @@
 let questions = [];
+let quizSubmitted = false;
 
 /* =========================
    Utilities
@@ -34,14 +35,12 @@ function renderQuiz() {
   quiz.innerHTML = "";
 
   questions.forEach((q, index) => {
-    // Wrapper για κάθε ερώτηση
     const questionDiv = document.createElement("div");
     questionDiv.className = "question";
     questionDiv.id = `question-${q.id}`;
 
     let html = `<h3>${index + 1}. ${q.question}</h3>`;
 
-    // Προσθήκη εικόνας αν υπάρχει
     if (q.image) {
       html += `
         <img 
@@ -81,44 +80,82 @@ function renderQuiz() {
 }
 
 /* =========================
-   Submit Quiz
+   Submit / New Quiz
 ========================= */
 function submitQuiz() {
+  // Second click → reload page
+  if (quizSubmitted) {
+    location.reload();
+    return;
+  }
+
+  quizSubmitted = true;
   let score = 0;
 
   questions.forEach(q => {
     const questionEl = document.getElementById(`question-${q.id}`);
-    const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+    const selected = document.querySelector(
+      `input[name="q${q.id}"]:checked`
+    );
 
     let feedback = document.createElement("div");
     feedback.classList.add("answer-feedback");
 
-    if (selected && selected.value === q.answer) {
-    score++;
-    questionEl.classList.add("correct");
-    feedback.classList.add("correct");
-    feedback.innerHTML = "✔ Σωστή απάντηση";
-} else {
-    questionEl.classList.add("wrong");
-    feedback.classList.add("wrong");
+    let userAnswer = null;
 
-    const userAnswer = selected ? selected.value : "Καμία απάντηση";
-    feedback.innerHTML = `
+    if (selected) {
+      if (q.type === "true_false") {
+        userAnswer = selected.value === "true";
+      } else {
+        userAnswer = selected.value;
+      }
+    }
+
+    if (userAnswer !== null && userAnswer === q.answer) {
+      score++;
+      questionEl.classList.add("correct");
+      feedback.classList.add("correct");
+      feedback.innerHTML = "✔ Σωστή απάντηση";
+    } else {
+      questionEl.classList.add("wrong");
+      feedback.classList.add("wrong");
+
+      const displayUserAnswer =
+        userAnswer === null
+          ? "Καμία απάντηση"
+          : q.type === "true_false"
+          ? userAnswer ? "Σωστό" : "Λάθος"
+          : userAnswer;
+
+      const displayCorrectAnswer =
+        q.type === "true_false"
+          ? q.answer ? "Σωστό" : "Λάθος"
+          : q.answer;
+
+      feedback.innerHTML = `
         ✖ Λάθος απάντηση<br>
-        <strong>Δική σου:</strong> ${userAnswer}
+        <strong>Δική σου:</strong> ${displayUserAnswer}
         <div class="correct-answer">
-          <strong>Σωστή:</strong> ${q.answer}
+          <strong>Σωστή:</strong> ${displayCorrectAnswer}
         </div>
-    `;
-}
+      `;
+    }
 
     questionEl.appendChild(feedback);
   });
 
   showScoreModal(score, questions.length);
+
+  // Change button text
+  const btn = document.getElementById("submitBtn");
+  if (btn) {
+    btn.textContent = "Νέο Quiz";
+  }
 }
 
-
+/* =========================
+   Score Modal
+========================= */
 function showScoreModal(score, total) {
   const modal = document.createElement("div");
   modal.className = "score-modal";
